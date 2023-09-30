@@ -1,0 +1,21 @@
+.bloc_page
+{
+	width : 1000px;
+	height : 500px;
+	margin : auto;
+	border : 1px solid black;
+	border-radius : 5px;
+	box-shadow : 3px 3px 3px gray;
+	background-color : silver
+}
+h1
+{
+	text-align : center;
+	color : azure;
+	background-color : black;
+}
+fieldset
+{
+	margin : 20px;
+	background-color : white;
+}

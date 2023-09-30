@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+
+<html>
+
+    <head>
+	     <title>JavaScript - TP : Contrôle de saisie</title>
+		 <meta charset="utf-8" />
+		 <link rel="stylesheet" href="style.css" />
+	</head>
+	
+	<body>
+	   <div class="bloc_page">
+	   
+	       <script src="C:/Users/houdayfa/Desktop/Etudes/Informatique/ISGI/TDI/jquery-1.12.4.min.js"></script> <!-- Appel du fichier jQuery -->
+	   
+	       <script language="JavaScript">
+		   
+		        $(document).ready(function(){
+				    //var var_Exp1 = new RegExp("(?=.{6,}).*", "g");
+					//var var_Exp2 = new RegExp("\w$","g");
+				
+				    $("h3").click(function(){
+					    $(".bloc_authentification").slideToggle("fast");
+					}) 
+					
+					$("#btn2").click(function(){ // Ne marche pas !!!
+					    var var_Exp1 = new RegExp("^.{6,}$", "g");
+						var var_Exp2 = new RegExp("^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).*$", "g");
+						
+					    if($("#T_Login").val()=="")
+						{
+						   alert("Saisir un login");
+						   $("#T_Login").focus();
+						}
+						else
+						   if($("#T_Mdp").val()=="")
+						   {
+						      alert("Saisir un mot de passe");
+							  $("#T_Mdp").focus();
+						   }
+						   else
+							  if(var_Exp1.test($("#T_Mdp").val())===false)
+							  {
+							     alert("Le mot de passe doit contenir au mois 6 caractères");
+								 $("#T_Mdp").focus();
+							  }
+							  else
+							      if(var_Exp2.test($("#T_Mdp").val())===false)
+								  {
+								     alert("Le mot de passe doit contenir des maj et min");
+								  }
+								  else
+								  if($("#T_Mdp2").val()=="")
+										alert("Confirmer le mot de passe");
+								  else
+								     if($("#T_Mdp").val()!= $("#T_Mdp2").val())
+								     {
+								          alert("Mot de passe de confirmation incorrécte !");
+								     }
+									 else
+									     alert("Accès autorisé");
+					})
+				})
+		   
+		        function Controle_Mdp()
+				{
+					var var_login = document.getElementById("T_Login").value;
+					var var_mdp = document.getElementById("T_Mdp").value;
+					var var_mdp2 = document.getElementById("T_Mdp2").value;
+					//var var_mdp = document.form.Mdp.value;
+					
+					var regex = new  RegExp("^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).*$","g")
+					
+					if(var_login=="")
+					{
+					    alert("Saisir votre login");
+						document.getElementById("T_Login").focus();
+					}
+					else
+					if(var_mdp=="")
+					{
+					     alert("Saisir votre mot de passe");
+						 document.getElementById("T_Mdp").focus();
+					}
+					else
+					if(var_mdp.length<6)
+					{
+					   alert("Le mot de passe doit contenir 6 caractères au minimum ");
+					   document.getElementById("T_Mdp").focus();
+					}
+					else
+					if(regex.test(var_mdp) == false)
+					{
+					    alert("");
+					}
+					else
+					if(var_mdp2=="")
+					{
+					    alert("Saisir votre mot de passe de confirmation");
+						document.getElementById("T_Mdp2").focus();
+					}
+					else
+					if(var_mdp != var_mdp2)
+					{
+					   alert("Mot de passe de confirmation incorrécte !");
+					}
+					else
+					{
+					    alert("Accés autorisé !");
+					}
+					
+					  /* else
+					   {
+						   var test_num = true;
+					       for(var int i=0; i<var_mdp.length; i++)
+						   {
+						       if(var_mdp.chartAt[i].keyCode < 48 || var_mdp.chartAt[i].keyCode > 57)
+							       test_num = false;
+						   }
+						   if(test_num == true)
+								alert("Le mdp ne contient que des chiffres !!");
+					   }*/
+				} 
+		   </script>
+ 
+           <header>
+               <h1>CONTROLE DE SAISIE</h1>
+           </header>
+           
+		   <section>
+		          <article>
+				       <form method="post" action="traitement.php" name="form">
+					       <fieldset>
+						    <legend>Authentification</legend>
+						    <h3 style="text-align:center; width : 120px; margin : auto; padding : 10px; border : 1px solid black; border-radius : 5px; box-shadow : 5px 5px 3px black;">Afficher authentification</h3>
+						    <div class="bloc_authentification" style="display : none;">
+						      
+							  <label for="T_Login">Login : </label>
+							  <input type="text" id="T_Login" name="Login" size="20" maxlength="30" placeholder="Ex : Okarin" />
+							  <br/><br/>
+							  <label for="T_Mdp">Mot de passe : </label>
+							  <input type="password" id="T_Mdp" name="Mdp" size="20" maxlength="30" placeholder="Ex : P@ssw0rd123" />
+							  <label for="T_Mdp2">Confirmer mot de passe : </label>
+							  <input type="password" id="T_Mdp2" name="Mdp2" size="20" maxlength="30" placeholder="Ex : P@ssw0rd123" />
+							  <br/><br/>
+							  <input type="button" value="Confirmer (Jscript)" onclick="Controle_Mdp()" />
+							  <br/><br/>
+							  <input id="btn2" type="button" value="Confirmer (jQuery)" onclick="Controle_Mdp2()" />
+							</div>
+							
+						   </fieldset>
+					   </form>
+				  </article>
+		   </section>
+		   
+		   <footer>
+		   
+		   </footer>
+	   </div>
+	</body>
+
+</html>
